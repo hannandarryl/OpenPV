@@ -1,4 +1,4 @@
-from pvpFile import pvpOpen
+from .pvpFile import pvpOpen
 
 #Convenience function for new and improved pvpOpen
 def writepvpfile(filename, data, shape=None, useExistingHeader=False):
