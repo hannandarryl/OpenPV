@@ -215,7 +215,7 @@ class pvpOpen(object):
                 self.pvpFile.seek(self.framePos[frame], os.SEEK_SET)
                 time = np.fromfile(self.pvpFile,np.float64,1)[0]
                 timeList.append(time)
-                numActive = np.fromfile(self.pvpFile,np.uint32,1)
+                numActive = np.fromfile(self.pvpFile,np.uint32,1)[0]
                 currentData = np.fromfile(self.pvpFile,entryPattern,numActive)
                 dataIdx = currentData['index']
                 dataValues = currentData['activation']
