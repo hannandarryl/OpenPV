@@ -402,14 +402,14 @@ class pvpOpen(object):
     def writeHeader(self):
         # To get ordered list of header params
         if self.header['numparams'] == 26:
-            hPattern = extendedHeaderPattern
+            self.hPattern = extendedHeaderPattern
         else:
-            hPattern = headerPattern
+            self.hPattern = headerPattern
 
         #Weight patches write header everytime, so ignore if filetype 5
         if(self.header["filetype"] != 5):
             #Write out header
-            for headerEntry in hPattern:
+            for headerEntry in self.hPattern:
                 self.pvpFile.write(headerEntry[1](self.header[headerEntry[0]]))
 
     def updateHeader(self, data):
@@ -484,7 +484,7 @@ class pvpOpen(object):
                 #tmpHeader["wMax"] = np.uint32(np.max(data["values"][dataFrame, :, :, :, :, :]))
                 #tmpHeader["wMin"] = np.uint32(np.min(data["values"][dataFrame, :, :, :, :, :]))
                 #We write headers here because we need a header per frame
-                for headerEntry in hPattern:
+                for headerEntry in self.hPattern:
                     self.pvpFile.write(headerEntry[1](tmpHeader[headerEntry[0]]))
                 #Within each patch, we write out each nxp, nyp, and offset
                 for dataArbor in range(numArbors):
